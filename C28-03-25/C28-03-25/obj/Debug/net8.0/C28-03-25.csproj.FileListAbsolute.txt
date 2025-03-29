@@ -1,0 +1,14 @@
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\obj\Debug\net8.0\C28-03-25.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\obj\Debug\net8.0\C28-03-25.AssemblyInfoInputs.cache
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\obj\Debug\net8.0\C28-03-25.AssemblyInfo.cs
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\obj\Debug\net8.0\C28-03-25.csproj.CoreCompileInputs.cache
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\bin\Debug\net8.0\C28-03-25.exe
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\bin\Debug\net8.0\C28-03-25.deps.json
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\bin\Debug\net8.0\C28-03-25.runtimeconfig.json
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\bin\Debug\net8.0\C28-03-25.dll
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\bin\Debug\net8.0\C28-03-25.pdb
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\obj\Debug\net8.0\C28-03-25.dll
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\obj\Debug\net8.0\refint\C28-03-25.dll
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\obj\Debug\net8.0\C28-03-25.pdb
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\obj\Debug\net8.0\C28-03-25.genruntimeconfig.cache
+C:\Users\isfdt\source\repos\C28-03-25\C28-03-25\obj\Debug\net8.0\ref\C28-03-25.dll
