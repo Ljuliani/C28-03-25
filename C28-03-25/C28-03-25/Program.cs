@@ -1,83 +1,94 @@
-﻿int aprobados = 0;
-int reprobados = 0;
-string opcion;
+using System;
 
-do
+class Program
 {
-    Console.WriteLine("--- Menú Principal ---");
-    Console.WriteLine("1 - Ingreso fijo de notas");
-    Console.WriteLine("2 - Ingreso indefinido de notas");
-    Console.WriteLine("3 - Mostrar resumen");
-    Console.WriteLine("4 - Salir");
-    Console.WriteLine("Seleccione una opción:");
-    opcion = Console.ReadLine();
-    switch (opcion)
+    static int aprobados = 0;
+    static int desaprobados = 0;
+
+    static void Main()
     {
-        case "1":
-            IngresoFijo();
-            break;
-        case "2":
-            IngresoIndefinido();
-            break;
-        case "3":
-            MostrarResumen();
-            break;
-        case "4":
-            Console.WriteLine("Saliendo del sistema...");
-            break;
-        default:
-            Console.WriteLine("Opción inválida");
-            break;
-    }
-
-
-} while (opcion!="4");
-
-
-
-
-
-void IngresoFijo()
-{
-   
-    
-
-    int cantidad = ValidarCantidad();
-    
-    
-
-    for (int i = 0; i < cantidad; i++)
-    {
-        float nota = ValidarNota(i);
-
-        CalificarNota(nota);
-        
-    }
-}
-
-void IngresoIndefinido()
-{
-    float nota;
-    int i;
-    string respuesta = "SI";
-
-    while (respuesta == "SI")
-    {
-        bool notaValidada;
-        do
+        while (true)
         {
-            Console.WriteLine("Ingrese la nota del estudiante:");
-            notaValidada = ValidarNota(int i)
+            Console.Clear();
+            Console.WriteLine("Menu principal");
+            Console.WriteLine("1. Cantidad fija de notas");
+            Console.WriteLine("2. Cantidad indefinida de notas");
+            Console.WriteLine("3. Cantidad de Aprobados/Desaprobados");
+            Console.WriteLine("4. Salir");
+            Console.WriteLine("Seleccione una opción:");
 
-            if (!notaValidada)
+            string opcion = Console.ReadLine();
+
+            switch (opcion)
             {
-                Console.WriteLine("Ingrese una nota valida entre 1-10");
+                case "1":
+                    F1();
+                    break;
 
+                case "2":
+                    F2();
+                    break;
+
+                case "3":
+                    F3();
+                    break;
+
+                case "4":
+                    Console.WriteLine("Gracias por utilizarnos");
+                    return;
+
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Esta opción no es válida. Por favor, intente de nuevo.");
+                    Console.WriteLine("Presione cualquier tecla para continuar.");
+                    Console.ReadKey();
+                    break;
             }
+        }
+    }
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        } while (!notaValidada);
-        
+    static void F1()
+    {
+        int cantidad = ValidarCantidad();
+        for (int i = 0; i < cantidad; i++)
+        {
+            float nota = ValidarNota(i);
+            CalificarNota(nota);
+        }
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    static void F2()
+    {
+        while (true)
+        {
+            float nota = ValidarNota(-1); // No necesitamos un índice aquí
+            CalificarNota(nota);
 
+            if (!Advertencia("¿Desea ingresar otra nota? (S/N)"))
+                break;
+        }
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    static void F3()
+    {
+        if (aprobados == 0 && desaprobados == 0)
+        {
+            Console.WriteLine("No hay notas para mostrar.");
+        }
+        else
+        {
+            Console.WriteLine("--- Resumen de notas ---");
+            Console.WriteLine("Total de aprobados: " + aprobados);
+            Console.WriteLine("Total de reprobados: " + desaprobados);
+        }
+
+        Console.WriteLine("Presione cualquier tecla para continuar.");
+        Console.ReadKey();
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    static void CalificarNota(float nota)
+    {
         if (nota >= 7)
         {
             Console.WriteLine("Aprobado");
@@ -86,90 +97,75 @@ void IngresoIndefinido()
         else
         {
             Console.WriteLine("Reprobado");
-            reprobados++;
+            desaprobados++;
         }
-
-
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    static int ValidarCantidad()
+    {
+        int cantidad;
+        bool cantidadValidada;
         do
         {
-            Console.WriteLine("¿Desea ingresar otra nota? (SI/NO):");
-            respuesta = Console.ReadLine().ToUpper();
-            if (respuesta != "SI" && respuesta != "NO")
+            Console.Clear();
+            Console.WriteLine("¿Cuántas notas desea ingresar?");
+            cantidadValidada = int.TryParse(Console.ReadLine(), out cantidad) && cantidad > 0;
+
+            if (!cantidadValidada)
             {
-                Console.WriteLine("Por favor, ingrese (SI/NO)");
+                Console.WriteLine("Ingrese una cantidad numérica mayor a cero.");
+                Console.WriteLine("Presione cualquier tecla para intentar de nuevo.");
+                Console.ReadKey();
             }
 
-        } while (respuesta != "SI" && respuesta != "NO");
-        
+        } while (!cantidadValidada);
+
+        return cantidad;
     }
-}
-
-void MostrarResumen()
-{
-    if(aprobados==0 & reprobados == 0)
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    static float ValidarNota(int i)
     {
-        Console.WriteLine("No hay notas para mostrar");
-    }
-    else
-    {
-        Console.WriteLine("--- Resumen de notas ---");
-        Console.WriteLine("Total de aprobados: " + aprobados);
-        Console.WriteLine("Total de reprobados: " + reprobados);
-
-    }
-    
-}
-
-void CalificarNota(float nota)
-{
-    if (nota >= 7)
-    {
-        Console.WriteLine("Aprobado");
-        aprobados++;
-    }
-    else
-    {
-        Console.WriteLine("Reprobado");
-        reprobados++;
-    }
-}
-
-int ValidarCantidad()
-{
-    bool cantidadValidada;
-    int cantidad;
-    do
-    {
-
-        Console.WriteLine("¿Cuántas notas desea ingresar?");
-        cantidadValidada = int.TryParse(Console.ReadLine(), out cantidad) & cantidad > 0;
-
-        if (!cantidadValidada)
+        float nota;
+        bool notaValidada;
+        do
         {
-            Console.WriteLine("Ingresa una cantidad numerica mayor a cero");
-        }
+            Console.Clear();
+            if (i >= 0)
+                Console.WriteLine($"Ingrese la nota del estudiante {i + 1}:");
+            else
+                Console.WriteLine("Ingrese la nota del alumno que desea:");
 
-    } while (!cantidadValidada);
+            notaValidada = float.TryParse(Console.ReadLine(), out nota) & nota >= 0 & nota <= 10;
 
-    return cantidad;
-}
+            if (!notaValidada)
+            {
+                Console.WriteLine("Ingrese una nota válida entre 0 y 10.");
+                Console.WriteLine("Presione cualquier tecla para intentar de nuevo.");
+                Console.ReadKey();
+            }
 
+        } while (!notaValidada);
 
-float ValidarNota(int i)
-{
-    float nota;
-    bool notaValidada;
-    do
+        return nota;
+    }
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    static bool Advertencia(string mensaje)
     {
-        Console.WriteLine($"Ingrese la nota del estudiante {i + 1}:");
-        notaValidada = float.TryParse(Console.ReadLine(), out nota) & nota > 0 & nota <= 10;
-        if (!notaValidada)
+        Console.WriteLine(mensaje);
+        string respuesta = Console.ReadLine()?.ToUpper();
+
+        if (respuesta == "S")
         {
-            Console.WriteLine("Ingresa una nota numerica entre 1 y 10");
+            return true;
         }
-
-    } while (!notaValidada);
-
-    return nota;
-
+        else if (respuesta == "N")
+        {
+            return false;
+        }
+        else
+        {
+            Console.WriteLine("Entrada no válida. Inténtelo de nuevo.");
+            return Advertencia(mensaje);
+        }
+    }
 }
